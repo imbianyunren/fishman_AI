@@ -1,1 +1,2 @@
-# fishman_AI
+# FISHMAN_AI
+此AI目的為判斷
