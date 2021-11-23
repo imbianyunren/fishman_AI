@@ -78,7 +78,9 @@ python main.py argument path
 ```concole
 python main.py -v ‘Path_to_video’
 ```
-特別註明，youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。
+PS : youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。
+
+PSS : 如果你稍微去研究一下程式碼，會發現其實有一個 argument 是 -o，但他目前是不能用的狀態，預計於下一個版本維修完成。
 
 ---
 
