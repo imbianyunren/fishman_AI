@@ -84,6 +84,9 @@ python main.py -v ‘Path_to_video’
 
 ## 執行結果
 
+大概會長的跟下圖差不多
+
+
 ![result_001](./sample/result_001.png)
 
 
