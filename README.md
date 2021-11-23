@@ -54,6 +54,7 @@ pip install opencv-python
 pip install imutils
 pip install numpy
 pip install pafy
+pip install youtube_dl
 ```
 
 ---
