@@ -218,20 +218,18 @@ def argsParser():
     return args
 
 
-labelsPath = "coco.names"
+labelsPath = "./model/coco.names"
 LABELS = open(labelsPath).read().strip().split("\n")
 
 
-weights_path = "yolov4-tiny.weights"
-config_path = "yolov4-tiny.cfg"
+weights_path = "./model/yolov4-tiny.weights"
+config_path = "./model/yolov4-tiny.cfg"
 
 model = cv2.dnn.readNetFromDarknet(config_path, weights_path)
 layer_name = model.getLayerNames()
 layer_name = [layer_name[i-1] for i in model.getUnconnectedOutLayers()]
 
 if __name__ == "__main__":
-    # HOGCV = cv2.HOGDescriptor()
-    # HOGCV.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-
+    
     args = argsParser()
     humanDetector(args)
