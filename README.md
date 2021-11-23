@@ -32,7 +32,7 @@ git clone https://github.com/AmazingWilson-hub/fishman_AI
 ---
 ## 環境建立
 
-本程式是利用python來撰寫，裡所當然你的電腦需要 python 的環境來執行，並且我們需要pip來安裝一些額外的  libaries ，我們可以利用以下簡單的兩個指令來檢查:
+本程式是利用python來撰寫，裡所當然你的電腦需要 python 的環境來執行，並且我們需要pip來安裝一些額外的  libraries ，我們可以利用以下簡單的兩個指令來檢查:
 
 ```console
 py --version
