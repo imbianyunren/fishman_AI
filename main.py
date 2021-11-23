@@ -73,15 +73,12 @@ def detectByPathVideo(path, writer):
         person = 0
         if check:
             frame = imutils.resize(frame, width=min(800, frame.shape[1]))
-            results = pedestrian_detection(
-                frame, model, layer_name, personidz=LABELS.index("person"))
+            results = pedestrian_detection(frame, model, layer_name, personidz=LABELS.index("person"))
 
             for res in results:
-                cv2.rectangle(frame, (res[1][0], res[1][1]),
-                              (res[1][2], res[1][3]), (0, 255, 0), 2)
+                cv2.rectangle(frame, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
                 person += 1
-            cv2.putText(frame, f'Total Persons : {person}', (
-                40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+            cv2.putText(frame, 'Total Persons : {person}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
             cv2.imshow("Detection", frame)
             if writer is not None:
                 writer.write(frame)
