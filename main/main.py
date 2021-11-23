@@ -1,11 +1,11 @@
+import pafy
 import cv2
 import imutils
 import numpy as np
 import argparse
-from imutils.object_detection import non_max_suppression
 
-NMS_THRESHOLD=0.3
-MIN_CONFIDENCE=0.2
+NMS_THRESHOLD = 0.3
+MIN_CONFIDENCE = 0.2
 
 
 def pedestrian_detection(image, model, layer_name, personidz=0):
@@ -70,15 +70,59 @@ def detectByPathVideo(path, writer):
     while video.isOpened():
         # check is True if reading was successful
         check, frame = video.read()
-
+        person = 0
         if check:
-            frame = imutils.resize(frame, width=min(400, frame.shape[1]))
-            results = pedestrian_detection(frame, model, layer_name, personidz=LABELS.index("person"))
+            frame = imutils.resize(frame, width=min(800, frame.shape[1]))
+            results = pedestrian_detection(
+                frame, model, layer_name, personidz=LABELS.index("person"))
 
             for res in results:
-                cv2.rectangle(frame, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
+                cv2.rectangle(frame, (res[1][0], res[1][1]),
+                              (res[1][2], res[1][3]), (0, 255, 0), 2)
+                person += 1
+            cv2.putText(frame, f'Total Persons : {person}', (
+                40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+            cv2.imshow("Detection", frame)
+            if writer is not None:
+                writer.write(frame)
+            key = cv2.waitKey(1)
+            if key == ord('q'):
+                break
+        else:
+            break
+    video.release()
+    cv2.destroyAllWindows()
 
 
+def detectByPathStreamLive(path, writer):
+
+    url = path
+    video = pafy.new(url)
+    best = video.getbest(preftype="mp4")
+    capture = cv2.VideoCapture(best.url)
+    # video = cv2.VideoCapture(path)
+    check, frame = capture.read()
+    # check, frame = video.read()
+    if check == False:
+        print('Video Not Found. Please Enter a Valid Path (Full path of Video Should be Provided).')
+        return
+
+    print('Detecting people...')
+    while capture.isOpened():
+        # check is True if reading was successful
+        check, frame = capture.read()
+        person = 0
+        if check:
+            frame = imutils.resize(frame, width=min(800, frame.shape[1]))
+            results = pedestrian_detection(
+                frame, model, layer_name, personidz=LABELS.index("person"))
+
+            for res in results:
+                cv2.rectangle(frame, (res[1][0], res[1][1]),
+                              (res[1][2], res[1][3]), (0, 255, 0), 2)
+                person += 1
+            cv2.putText(frame, f'Total Persons : {person}', (
+                40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
             cv2.imshow("Detection", frame)
             if writer is not None:
                 writer.write(frame)
@@ -104,9 +148,7 @@ def detectByCamera(writer):
         for res in results:
             cv2.rectangle(frame, (res[1][0], res[1][1]),
                           (res[1][2], res[1][3]), (0, 255, 0), 2)
-
         cv2.imshow("Detection", frame)
-
         key = cv2.waitKey(1)
         if key == ord('q'):
             break
@@ -120,13 +162,13 @@ def detectByPathImage(path, output_path):
 
     image = imutils.resize(image, width=min(800, image.shape[1]))
 
-    results = pedestrian_detection(image, model, layer_name,personidz=LABELS.index("person"))
+    results = pedestrian_detection(
+        image, model, layer_name, personidz=LABELS.index("person"))
 
     for res in results:
-	    cv2.rectangle(image, (res[1][0],res[1][1]), (res[1][2],res[1][3]), (0, 255, 0), 2)
-
-    cv2.imshow("Detection",image)
-
+        cv2.rectangle(image, (res[1][0], res[1][1]),
+                      (res[1][2], res[1][3]), (0, 255, 0), 2)
+    cv2.imshow("Detection", image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -134,6 +176,7 @@ def detectByPathImage(path, output_path):
 def humanDetector(args):
     image_path = args["image"]
     video_path = args['video']
+    stream_path = args['stream']
     if str(args["camera"]) == 'true':
         camera = True
     else:
@@ -153,12 +196,17 @@ def humanDetector(args):
     elif image_path is not None:
         print('[INFO] Opening Image from path.')
         detectByPathImage(image_path, args['output'])
+    elif stream_path is not None:
+        print('[INFO] Opening Live stream from path.')
+        detectByPathStreamLive(stream_path, writer)
 
 
 def argsParser():
     arg_parse = argparse.ArgumentParser()
     arg_parse.add_argument("-v", "--video", default=None,
                            help="path to Video File ")
+    arg_parse.add_argument("-s", "--stream", default=None,
+                           help="path to Stream File ")
     arg_parse.add_argument("-i", "--image", default=None,
                            help="path to Image File ")
     arg_parse.add_argument("-c", "--camera", default=False,
@@ -173,21 +221,17 @@ def argsParser():
 labelsPath = "coco.names"
 LABELS = open(labelsPath).read().strip().split("\n")
 
+
 weights_path = "yolov4-tiny.weights"
 config_path = "yolov4-tiny.cfg"
 
 model = cv2.dnn.readNetFromDarknet(config_path, weights_path)
-'''
-model.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-model.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
-'''
-
 layer_name = model.getLayerNames()
-layer_name = [layer_name[i - 1] for i in model.getUnconnectedOutLayers()]
+layer_name = [layer_name[i-1] for i in model.getUnconnectedOutLayers()]
 
 if __name__ == "__main__":
-    HOGCV = cv2.HOGDescriptor()
-    HOGCV.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+    # HOGCV = cv2.HOGDescriptor()
+    # HOGCV.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
     args = argsParser()
     humanDetector(args)
