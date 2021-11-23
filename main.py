@@ -12,7 +12,8 @@ def pedestrian_detection(image, model, layer_name, personidz=0):
     (H, W) = image.shape[:2]
     results = []
 
-    blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416),swapRB=True, crop=False)
+    blob = cv2.dnn.blobFromImage(
+        image, 1 / 255.0, (416, 416), swapRB=True, crop=False)
     model.setInput(blob)
     layerOutputs = model.forward(layer_name)
 
@@ -76,9 +77,11 @@ def detectByPathVideo(path, writer):
                 frame, model, layer_name, personidz=LABELS.index("person"))
 
             for res in results:
-                cv2.rectangle(frame, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
+                cv2.rectangle(frame, (res[1][0], res[1][1]),
+                              (res[1][2], res[1][3]), (0, 255, 0), 2)
                 person += 1
-            cv2.putText(frame, f'Total Persons : {person}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+            cv2.putText(frame, f'Total Persons : {person}', (
+                40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
             cv2.imshow("Detection", frame)
             if writer is not None:
                 writer.write(frame)
@@ -111,12 +114,15 @@ def detectByPathStreamLive(path, writer):
         person = 0
         if check:
             frame = imutils.resize(frame, width=min(800, frame.shape[1]))
-            results = pedestrian_detection(frame, model, layer_name, personidz=LABELS.index("person"))
+            results = pedestrian_detection(
+                frame, model, layer_name, personidz=LABELS.index("person"))
 
             for res in results:
-                cv2.rectangle(frame, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
+                cv2.rectangle(frame, (res[1][0], res[1][1]),
+                              (res[1][2], res[1][3]), (0, 255, 0), 2)
                 person += 1
-            cv2.putText(frame, f'Total Persons : {person}', (40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
+            cv2.putText(frame, f'Total Persons : {person}', (
+                40, 70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 0, 0), 2)
             cv2.imshow("Detection", frame)
             if writer is not None:
                 writer.write(frame)
@@ -140,7 +146,8 @@ def detectByCamera(writer):
             frame, model, layer_name, personidz=LABELS.index("person"))
 
         for res in results:
-            cv2.rectangle(frame, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
+            cv2.rectangle(frame, (res[1][0], res[1][1]),
+                          (res[1][2], res[1][3]), (0, 255, 0), 2)
         cv2.imshow("Detection", frame)
         key = cv2.waitKey(1)
         if key == ord('q'):
@@ -155,10 +162,12 @@ def detectByPathImage(path, output_path):
 
     image = imutils.resize(image, width=min(800, image.shape[1]))
 
-    results = pedestrian_detection(image, model, layer_name, personidz=LABELS.index("person"))
+    results = pedestrian_detection(
+        image, model, layer_name, personidz=LABELS.index("person"))
 
     for res in results:
-        cv2.rectangle(image, (res[1][0], res[1][1]),(res[1][2], res[1][3]), (0, 255, 0), 2)
+        cv2.rectangle(image, (res[1][0], res[1][1]),
+                      (res[1][2], res[1][3]), (0, 255, 0), 2)
     cv2.imshow("Detection", image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -194,28 +203,32 @@ def humanDetector(args):
 
 def argsParser():
     arg_parse = argparse.ArgumentParser()
-    arg_parse.add_argument("-v", "--video", default=None,help="path to Video File ")
-    arg_parse.add_argument("-s", "--stream", default=None,help="path to Stream File ")
-    arg_parse.add_argument("-i", "--image", default=None,help="path to Image File ")
-    arg_parse.add_argument("-c", "--camera", default=False,help="Set true if you want to use the camera.")
-    arg_parse.add_argument("-o", "--output", type=str,help="path to optional output video file")
+    arg_parse.add_argument("-v", "--video", default=None,
+                           help="path to Video File ")
+    arg_parse.add_argument("-s", "--stream", default=None,
+                           help="path to Stream File ")
+    arg_parse.add_argument("-i", "--image", default=None,
+                           help="path to Image File ")
+    arg_parse.add_argument("-c", "--camera", default=False,
+                           help="Set true if you want to use the camera.")
+    arg_parse.add_argument("-o", "--output", type=str,
+                           help="path to optional output video file")
     args = vars(arg_parse.parse_args())
 
     return args
 
 
-labelsPath = "./model/coco.names"
-LABELS = open(labelsPath).read().strip().split("\n")
-
-
-weights_path = "./model/yolov4-tiny.weights"
-config_path = "./model/yolov4-tiny.cfg"
-
-model = cv2.dnn.readNetFromDarknet(config_path, weights_path)
-layer_name = model.getLayerNames()
-layer_name = [layer_name[i-1] for i in model.getUnconnectedOutLayers()]
-
 if __name__ == "__main__":
-    
+
+    labelsPath = "./model/coco.names"
+    LABELS = open(labelsPath).read().strip().split("\n")
+
+    weights_path = "./model/yolov4-tiny.weights"
+    config_path = "./model/yolov4-tiny.cfg"
+
+    model = cv2.dnn.readNetFromDarknet(config_path, weights_path)
+    layer_name = model.getLayerNames()
+    layer_name = [layer_name[i-1] for i in model.getUnconnectedOutLayers()]
+
     args = argsParser()
     humanDetector(args)
