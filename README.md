@@ -15,6 +15,7 @@
 * [環境建立](#環境建立)
 * [程式執行](#程式執行)
 * [執行結果](#執行結果)
+* [輸出檔案](#輸出檔案)(ver1.1 新增)
 
 ---
 ## 事前準備
@@ -91,6 +92,35 @@ PSS : 如果你稍微去研究一下程式碼，會發現其實有一個 argumen
 
 
 ![result_001](./sample/result_001.png)
+
+
+---
+
+## 輸出檔案
+
+1.1版本新增了輸出檔案的功能，其內容包括了:
+
+原文           | 功能  | 
+------------  | ----  | 
+Frames per second using | 原影片帧率 | 
+Remaining frames    | 不到一小時的剩於帧數 | 
+Remaining times  | 不到一小時的剩於時間 |
+Remaining people appear frames  | 不到一小時的有人出現的帧 |
+Remaining people appear times  | 不到一小時的有人出現的時間 |
+Remaining weighted frames in one hour  | 不到一小時的有權重的帧 |
+Remaining weighted times in one hour  | 不到一小時的有權重的時間 |
+Remaining appears people  | 不到一小時的出現總人數 |
+Remaining average people  | 不到一小時的平均出現人數 |
+Total frames  | 在結束前的所有帧數 |
+Total times  | 在結束前的所有時間 |
+Total people appears frames  | 不到一小時的剩於時間 | 
+Total people appears times | 在結束前的所有時間 |
+Total weighted frames  | 在結束前的所有有權重的帧 |
+Average people in this video | 每帧的平均人數 |
+
+
+
+
 
 
 ---

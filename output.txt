@@ -1,0 +1,26 @@
+
+==================================================================
+[INFO] Opening Live stream from path : https://youtu.be/x6EscdqCen8.
+******************************************************************
+Frames per second using video.get(cv2.CAP_PROP_FPS) : 29.97002997002997
+******************************************************************
+caught ctrl+c signal...
+******************************************************************
+Remaining frames : 844
+Remaining times : 0.47 minutes 28.16 seconds
+Remaining people appear frames : 814
+Remaining people appear times : 0.45 minutes 27.16 seconds
+Remaining weighted frames in one hour: 
+Remaining weighted times in one hour : 0.03 hours 1.98 minutes 58.79 seconds
+Remaining appears people : 3560
+Remaining average people : 4.22
+******************************************************************
+Total frames : 844
+Total times : 0.01 hours 0.47 minutes 28.16 seconds
+Total people appears frames : 814
+Total people appears times : 0.01 hours 0.45 minutes 27.16 seconds
+Total weighted frames : 3560
+Total weighted times : 0.03 hours 1.98 minutes 58.79 seconds
+******************************************************************
+Average people in this video : 4.22
+==================================================================
