@@ -333,7 +333,7 @@ def detectByPathStreamLive(path, writer):
                 break
         else:
             break
-    video.release()
+    capture.release()
     cv2.destroyAllWindows()
     print("******************************************************************")
     f.write("******************************************************************\n")
