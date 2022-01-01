@@ -65,7 +65,7 @@ pip install youtube_dl
 
 執行程式的指令基本上就是:
 
-```concole
+```console
 python main.py argument path
 ```
 
@@ -78,15 +78,15 @@ python main.py argument path
 舉例來說，如果你要輸入一個影片，你只需要:
 
 Windows
-```concole
+```console
 python main.py -v ‘Path_to_video’
 ```
 
 Linux
-```concole
+```console
 python3 main.py -v ‘Path_to_video’
 ```
-PS : youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。
+PS : youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。<br>
      另外若出現`KeyError: 'dislike_count'`、`KeyError: 'dislike_count'`此錯誤，解決方式請詳見文件末端的錯誤處理的部分。
 
 
@@ -126,17 +126,33 @@ Total people appears times | 在結束前的所有時間 |
 Total weighted frames  | 在結束前的所有有權重的帧 |
 Average people in this video | 每帧的平均人數 |
 
-
+---
  ## 錯誤處理
- 若您執行時遇到下圖的狀況:
- 等等放圖~
+ #### KeyError: 'dislike_count'、KeyError: 'like_count'
+ 由於youtube近期改版取消dislike顯示(部分影片會選擇不顯示like數)，導致pafy函式庫在存取youtube影片會出問題，
+ 因此需要手動調整pafy對於youtube存取的程式碼內容
+ 以下為錯誤處理方式，若錯誤為`KeyError: 'like_count'`解決方式也相同
+ 
+ 
+ 若您執行時遇到下圖的狀況(以windows powershell執行圖為例):
+ ![image](https://user-images.githubusercontent.com/60705979/147848758-028cb5f8-d0b0-4a51-bd19-5d13e76806b5.png)
+
  
  請您照以下步驟解決:
  
-1. 使用任意編輯器開啟backend_youtube_dl.py檔案
-   以記事本為例，先將上圖backend_youtube_dl.py位置複製起來
-   ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
-
+1. 使用任意編輯器(ex. 記事本、vim、vscode等等)開啟backend_youtube_dl.py檔案
+2. 以記事本為例，先將上圖backend_youtube_dl.py位置複製起來
+     ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
+3. 接著開啟記事本，點選左上角檔案，並點擊裡面的開啟選項，將剛複製的檔案位置貼在箭頭指的位置並開啟
+   ![image](https://user-images.githubusercontent.com/60705979/147848556-e2c3affe-3320-4879-a3fb-226e25ffc5ca.png)
+4. 編輯backend_youtube_dl.py文件內容，在`self._dislikes = self._ydl_info['dislike_count']`此行(line 54，可用尋找功能)前面加上`#`註解
+   ```python
+   #self._dislikes = self._ydl_info['dislike_count']
+   ```
+   修改後文件內容
+   ![image](https://user-images.githubusercontent.com/60705979/147848681-2b4d2761-0750-480d-9879-f0704591d87a.png)
+5. 修改完成後重新測試即可順利執行，並不影響原程式功能
+   
 
 
 ---
