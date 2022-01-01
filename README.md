@@ -149,8 +149,6 @@ Average people in this video | 每帧的平均人數 |
    ```python
    #self._dislikes = self._ydl_info['dislike_count']
    ```
-   修改後文件內容
-   ![image](https://user-images.githubusercontent.com/60705979/147848681-2b4d2761-0750-480d-9879-f0704591d87a.png)
 5. 修改完成後重新測試即可順利執行，並不影響原程式功能
    
 
