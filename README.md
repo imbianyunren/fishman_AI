@@ -130,8 +130,8 @@ Average people in this video | 每帧的平均人數 |
  ## 錯誤處理
  #### KeyError: 'dislike_count'、KeyError: 'like_count'
  由於youtube近期改版取消dislike顯示(部分影片會選擇不顯示like數)，導致pafy函式庫在存取youtube影片會出問題，
- 因此需要手動調整pafy對於youtube存取的程式碼內容
- 以下為錯誤處理方式，若錯誤為`KeyError: 'like_count'`解決方式也相同
+ 因此需要手動調整pafy對於youtube存取的程式碼內容<br>
+ 以下為`KeyError: 'dislike_count'`錯誤處理方式，若錯誤為`KeyError: 'like_count'`解決方式也相同
  
  
  若您執行時遇到下圖的狀況(以windows powershell執行圖為例):
@@ -141,8 +141,8 @@ Average people in this video | 每帧的平均人數 |
  
  請您照以下步驟解決:
  
-1. 使用任意編輯器(ex. 記事本、vim、vscode等等)開啟backend_youtube_dl.py檔案
-   * 以記事本為例，先將上圖backend_youtube_dl.py位置複製起來
+1. 使用任意編輯器(ex. 記事本、vim、vscode等等)開啟backend_youtube_dl.py檔案，以下以記事本為例
+   * 先將上圖backend_youtube_dl.py檔案位置複製起來
      ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
    * 接著開啟記事本，點選左上角檔案，並點擊裡面的開啟選項，將剛複製的檔案位置貼在箭頭指的位置並開啟
    ![image](https://user-images.githubusercontent.com/60705979/147848974-157a2710-9b33-4122-ac41-e033ed4e4ef2.png)
