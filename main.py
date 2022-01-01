@@ -111,6 +111,7 @@ def detectByPathVideo(path, writer):
     global total_frames
     global total_people_appears_frame
     global one_hour_frames
+    global fps
     global total_people_appears_in_one_hour_frame
     global total_people
     global total_people_in_one_hour
