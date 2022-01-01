@@ -83,7 +83,7 @@ Linux
 python3 main.py -v ‘Path_to_video’
 ```
 PS : youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。<br>
-     另外若出現`KeyError: 'dislike_count'`、`KeyError: 'dislike_count'`此錯誤，解決方式請詳見文件末端的錯誤處理的部分。
+     另外若出現`KeyError: 'dislike_count'`、`KeyError: 'dislike_count'`此錯誤，解決方式請詳見文件末端的[錯誤處理](#錯誤處理)的部分。
 
 
 PSS : 如果你稍微去研究一下程式碼，會發現其實有一個 argument 是 -o，功能是輸出結果，但他目前是不能用的狀態，預計於下一個版本維修完成。
@@ -125,7 +125,7 @@ Average people in this video | 每幀的平均人數 |
 ---
  ## 錯誤處理
  #### KeyError: 'dislike_count'、KeyError: 'like_count'
- 由於youtube近期改版取消dislike顯示(部分影片會選擇不顯示like數)，導致pafy函式庫在存取youtube影片會出問題，
+ 由於youtube近期改版取消dislike顯示(部分影片會不顯示like數)，導致pafy函式庫在存取youtube影片會出問題，
  因此需要手動調整pafy對於youtube存取的程式碼內容<br>
  以下為`KeyError: 'dislike_count'`錯誤處理方式，若錯誤為`KeyError: 'like_count'`解決方式也相同
  
