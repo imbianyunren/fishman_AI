@@ -53,7 +53,6 @@ pip --version
 
 ```concole
 py -m pip install --user opencv-python pafy youtube_dl imutils numpy scipy matplotlib ipython jupyter pandas sympy nose seaborn
-
 ```
 
 ---
