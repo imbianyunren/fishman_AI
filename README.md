@@ -144,7 +144,7 @@ Average people in this video | 每帧的平均人數 |
 2. 以記事本為例，先將上圖backend_youtube_dl.py位置複製起來
      ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
 3. 接著開啟記事本，點選左上角檔案，並點擊裡面的開啟選項，將剛複製的檔案位置貼在箭頭指的位置並開啟
-   ![image](https://user-images.githubusercontent.com/60705979/147848556-e2c3affe-3320-4879-a3fb-226e25ffc5ca.png)
+   ![image](https://user-images.githubusercontent.com/60705979/147848974-157a2710-9b33-4122-ac41-e033ed4e4ef2.png)
 4. 編輯backend_youtube_dl.py文件內容，在`self._dislikes = self._ydl_info['dislike_count']`此行(line 54，可用尋找功能)前面加上`#`註解
    ```python
    #self._dislikes = self._ydl_info['dislike_count']
