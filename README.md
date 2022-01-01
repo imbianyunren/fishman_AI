@@ -1,4 +1,3 @@
-#test
 # Pedestrian Detection for Fishman Overwork Detection
 
 此行人檢測系統為基於漁工過勞檢測系統所開發
@@ -78,10 +77,18 @@ python main.py argument path
 
 舉例來說，如果你要輸入一個影片，你只需要:
 
+Windows
 ```concole
 python main.py -v ‘Path_to_video’
 ```
+
+Linux
+```concole
+python3 main.py -v ‘Path_to_video’
+```
 PS : youtube連結不管是直播還是影片都能用喔，不過那個功能有點不穩定，如果出現錯誤多試幾次就可以了。
+     另外若出現`KeyError: 'dislike_count'`、`KeyError: 'dislike_count'`此錯誤，解決方式請詳見文件末端的錯誤處理的部分。
+
 
 PSS : 如果你稍微去研究一下程式碼，會發現其實有一個 argument 是 -o，功能是輸出結果，但他目前是不能用的狀態，預計於下一個版本維修完成。
 
@@ -120,13 +127,21 @@ Total weighted frames  | 在結束前的所有有權重的帧 |
 Average people in this video | 每帧的平均人數 |
 
 
-
+ ## 錯誤處理
+ 若您執行時遇到下圖的狀況:
+ 等等放圖~
+ 
+ 請您照以下步驟解決:
+ 
+1. 使用任意編輯器開啟backend_youtube_dl.py檔案
+   以記事本為例，先將上圖backend_youtube_dl.py位置複製起來
+   ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
 
 
 
 ---
 
-## Meet the Team
+## Meet the Team 
 
 郭弘偉
 郭怡靚
