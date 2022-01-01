@@ -52,11 +52,8 @@ pip --version
 接下來要安裝擴充的函示庫，建議在你下載的程式碼的根目錄資料夾執行:
 
 ```concole
-pip install opencv-python
-pip install imutils
-pip install numpy
-pip install pafy
-pip install youtube_dl
+py -m pip install --user opencv-python pafy youtube_dl imutils numpy scipy matplotlib ipython jupyter pandas sympy nose seaborn
+
 ```
 
 ---
