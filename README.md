@@ -15,7 +15,10 @@
 * [環境建立](#環境建立)
 * [程式執行](#程式執行)
 * [執行結果](#執行結果)
-* [輸出檔案](#輸出檔案)(ver1.1 新增)
+* [輸出檔案](#輸出檔案) (ver1.1 新增)
+* [KS-Test](#KS-Test)  (ver2.0 新增)
+* [錯誤處理](#錯誤處理)
+  
 
 ---
 ## 事前準備
@@ -123,6 +126,27 @@ Total weighted frames  | 在結束前的所有有權重的幀 |
 Average people in this video | 每幀的平均人數 |
 
 ---
+
+## KS-Test
+2.0版本迎來重大更新，新增了程式可以處理輸出的檔案並輸出成圖表
+
+首先先來介紹KS-Test，KS-Test是一種基於累計分布函數的非母數檢定，用以檢定兩個經驗分布是否不同或一個經驗分布與另一個理想分布是否不同。
+
+KS-test是一種基於機率累積分布的測試，它用可以用來判斷理想分布和實際分布是否相似。
+
+KS-test有以下幾個參數:
+
+
+- 理想狀態的資料(包含產生理想資料的平均值、標準差)
+- 實際狀態的資料
+- alpha值 (最後算出來的p-value值如果大於該值，就代表兩者分布狀況相近==>沒有過勞，如果p-value值小於該值，就代表兩者分布不太相近==>過勞)
+
+測試的程式本身設計得很簡單，你可以直接import從main輸出出來的output，也可以手動輸入資料，程式會告訴你當月是否有無過勞，如果是一日的話，則會輸出圖表及是否過勞，範例如下:
+
+![figure](./sample/figure.png))
+
+
+---
  ## 錯誤處理
  #### KeyError: 'dislike_count'、KeyError: 'like_count'
  由於youtube近期改版取消dislike顯示(部分影片會不顯示like數)，導致pafy函式庫在存取youtube影片會出問題，
@@ -162,6 +186,8 @@ Average people in this video | 每幀的平均人數 |
 陳怡靜
 孫嘉成
 沈芳儀
+鄭雅云
+黃浚佑
 
 
 ---
@@ -171,3 +197,13 @@ Average people in this video | 每幀的平均人數 |
 如果你有任何問題，歡迎聯絡我
 amazingwilson@csie.io
 我會盡一切可能幫助你
+
+---
+
+## Reference
+
+https://data-flair.training/blogs/pedestrian-detection-python-opencv/
+
+https://data-flair.training/blogs/python-project-real-time-human-detection-counting/
+
+
