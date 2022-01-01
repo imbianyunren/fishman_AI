@@ -110,21 +110,21 @@ PSS : 如果你稍微去研究一下程式碼，會發現其實有一個 argumen
 
 原文           | 功能  | 
 ------------  | ----  | 
-Frames per second using | 原影片帧率 | 
-Remaining frames    | 不到一小時的剩於帧數 | 
+Frames per second using | 原影片幀率 | 
+Remaining frames    | 不到一小時的剩於幀數 | 
 Remaining times  | 不到一小時的剩於時間 |
-Remaining people appear frames  | 不到一小時的有人出現的帧 |
+Remaining people appear frames  | 不到一小時的有人出現的幀 |
 Remaining people appear times  | 不到一小時的有人出現的時間 |
-Remaining weighted frames in one hour  | 不到一小時的有權重的帧 |
+Remaining weighted frames in one hour  | 不到一小時的有權重的幀 |
 Remaining weighted times in one hour  | 不到一小時的有權重的時間 |
 Remaining appears people  | 不到一小時的出現總人數 |
 Remaining average people  | 不到一小時的平均出現人數 |
-Total frames  | 在結束前的所有帧數 |
+Total frames  | 在結束前的所有幀數 |
 Total times  | 在結束前的所有時間 |
 Total people appears frames  | 不到一小時的剩於時間 | 
 Total people appears times | 在結束前的所有時間 |
-Total weighted frames  | 在結束前的所有有權重的帧 |
-Average people in this video | 每帧的平均人數 |
+Total weighted frames  | 在結束前的所有有權重的幀 |
+Average people in this video | 每幀的平均人數 |
 
 ---
  ## 錯誤處理
@@ -142,6 +142,7 @@ Average people in this video | 每帧的平均人數 |
  請您照以下步驟解決:
  
 1. 使用任意編輯器(ex. 記事本、vim、vscode等等)開啟backend_youtube_dl.py檔案，以下以記事本為例
+
    * 先將上圖backend_youtube_dl.py檔案位置複製起來
      ![image](https://user-images.githubusercontent.com/60705979/147848439-cdbaa046-61bb-423b-b9bc-a06e7fddcdeb.png)
    * 接著開啟記事本，點選左上角檔案，並點擊裡面的開啟選項，將剛複製的檔案位置貼在箭頭指的位置並開啟
